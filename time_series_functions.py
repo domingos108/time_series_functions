@@ -10,7 +10,7 @@ class result_options:
     val_result=1
     train_result=2
     save_result=3
-
+    
 def create_windowing(df, lag_size):
     final_df = None
     for i in range(0, (lag_size + 1)):
