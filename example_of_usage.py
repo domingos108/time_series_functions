@@ -6,6 +6,10 @@ import src.time_series_functions as tsf
 
 def linear_combination():
     linear_model_path = './data/colorado_river_ARIMA_result_80.txt' 
+    """
+     the colorado_river_ARIMA_result_80 represent the ARIMA predictions (using 80 of the data
+     for training) for colorado rive time series
+    """
     arima = pd.read_csv(linear_model_path,sep=';')
 
     real = arima['y'].values 
@@ -47,4 +51,5 @@ def nonlinear_combination():
     print(results['test_metrics'])
 
 if __name__ == "__main__":
+    # linear_combination()
     nonlinear_combination()
