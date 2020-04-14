@@ -43,7 +43,7 @@ def additive_hybrid_model(predicted, real, time_window, base_model,
                           test_size, val_size):
     """
     Parameters: 
-    real (numpy array): real values of time sries 
+    real (numpy array): real values of time series 
     predicted (numpy array):  linear prediction of the time series
     time_window (int): time window of error prediction model
     base_model (Sklearn model): base model to predict the error
@@ -158,8 +158,8 @@ def nolic_model(linear_forecast, real, nonlinear_forecast,time_window,
 
     pred = min_max_scaler.inverse_transform(pred.reshape(-1, 1)).flatten()
 
-    real_atu = real[(time_window - 1):]
+    real_actual = real[(time_window - 1):]
     
-    result_metrics = tsf.make_metrics_avaliation(real_atu, pred, test_size,
+    result_metrics = tsf.make_metrics_avaliation(real_actual, pred, test_size,
                                        val_size, base_model.get_params(deep=True))
     return result_metrics
