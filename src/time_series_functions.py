@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+import datetime
+import pickle as pkl
+
 
 def create_windowing(df, lag_size):
     final_df = None
@@ -107,3 +110,50 @@ def gerenerate_metric_results(y_true, y_pred):
             'ARV': average_relative_variance(y_true, y_pred),
             'IA': index_agreement(y_true, y_pred),
             'POCID': prediction_of_change_in_direction(y_true, y_pred)}
+
+def make_metrics_avaliation(y_true, y_pred, test_size,
+                            val_size, model_params):
+    data_size = len(y_true)
+    train_size = data_size - (val_size + test_size)
+
+    y_true = np.asarray(y_true).reshape(-1)
+    y_pred = np.asarray(y_pred).reshape(-1)
+
+    y_true_test = y_true[(data_size - test_size):data_size]
+    y_pred_test = y_pred[(data_size - test_size):data_size]
+
+    val_result = None
+
+    if val_size>0:
+        y_true_val = y_true[(train_size):(data_size - test_size)]
+        y_pred_val = y_pred[(train_size):(data_size - test_size)]
+        val_result = gerenerate_metric_results(y_true_val, y_pred_val)
+
+    y_true_train = y_true[:train_size]
+    y_pred_train = y_pred[:train_size]
+
+    geral_dict = {
+        'test_metrics': gerenerate_metric_results(y_true_test, y_pred_test),
+        'val_metrics': val_result,
+        'train_metrics': gerenerate_metric_results(y_true_train, y_pred_train),
+        'real_values': y_true,
+        'predicted_values': y_pred,
+        'params': model_params
+    }
+
+    return geral_dict
+
+def save_result(dict_result, title):
+
+    currentDT = datetime.datetime.now()
+    title = title+"-"+currentDT.strftime('%d%m%y%s')+".pkl"
+
+    with open(title, 'wb') as handle:
+        pkl.dump(dict_result, handle)
+
+    return title
+
+def open_saved_result(file_name):
+    with open(file_name, 'rb') as handle:
+        b = pkl.load(handle)
+    return b
