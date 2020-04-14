@@ -57,11 +57,8 @@ def additive_hybrid_model(predicted, real, time_window, base_model,
 
     train_size = len(predicted) - test_size
 
-    ts_atu = real
-
     errors = np.subtract(real, predicted)
 
-    # normalize
     min_max_scaler = preprocessing.MinMaxScaler()
     min_max_scaler.fit(errors[0:train_size].reshape(-1, 1))
     normalized_error = min_max_scaler.transform(errors.reshape(-1, 1))
@@ -82,9 +79,9 @@ def additive_hybrid_model(predicted, real, time_window, base_model,
 
     prevs = predicted[time_window:] + pi_pred
 
-    ts_atu = ts_atu[time_window:]
+    ts_actual = real[time_window:]
 
-    return tsf.make_metrics_avaliation(ts_atu, prevs, test_size,
+    return tsf.make_metrics_avaliation(ts_actual, prevs, test_size,
                                        val_size, base_model.get_params(deep=True))
 
 def format_nolic_input(real, nonlinear_forecast, linear_forecast, test_size, time_window):
@@ -103,7 +100,7 @@ def format_nolic_input(real, nonlinear_forecast, linear_forecast, test_size, tim
     train_size_represents = len(real) - test_size
     
     error_values = nonlinear_forecast - linear_forecast
-    #if normalize:      
+
     min_max_scaler = preprocessing.MinMaxScaler()
     min_max_scaler.fit(real[0:train_size_represents].reshape(-1, 1))
 
