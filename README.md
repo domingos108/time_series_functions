@@ -7,6 +7,9 @@ that performs the linear combination:
 * Linear Combination based on Zhang <span id="a1">[[1]](#f1)</span>, which is available on additive_hybrid_model method;
 * Nonlinear Combination  based on Santos Jr et al. <span id="a2">[[2]](#f2)</span>, which is available on nolic_model method;
 
+In example_of_usage.py there are examples of usage of the methods. This file do not perform parameter optimization. The functions with parameter optimization will be added in the future.
+
+
 # Time Series Functions
 The src.time_series_functions.py has methods that can help the development of time series forecast models.  
 
