@@ -7,7 +7,7 @@ import src.time_series_functions as tsf
 def fit_sklearn_model(ts, model, test_size, val_size):
     """
     Parameters: 
-    ts (pandas.DataFrame): time series values using the created by 
+    ts (pandas.DataFrame): time series values created by 
                            src.time_series_functions.create_windowing
     model (Sklearn Model): base model to predict ts
     test_size (int): size of test set
@@ -28,7 +28,7 @@ def fit_sklearn_model(ts, model, test_size, val_size):
 def predict_sklearn_model(ts, model):
     """
     Parameters: 
-    ts (pandas.DataFrame): time series values using the created by 
+    ts (pandas.DataFrame): time series values created by 
                            src.time_series_functions.create_windowing
     model (Sklearn Model): base model to predict ts
     
@@ -138,7 +138,7 @@ def nolic_model(linear_forecast, real, nonlinear_forecast,time_window,
 
     """
     Parameters: 
-    real (numpy array): real values of time sries 
+    real (numpy array): real values of time series 
     linear_forecast (numpy array):  linear prediction of the time series
     nonlinear_forecast (numpy array): additive hibrid system prediction
     time_window (int): time window of error prediction model
