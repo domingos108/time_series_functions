@@ -2,10 +2,9 @@
 In src.hybrid_systems methods there are training and test procedures for Residual Hybrid Systems
 
 ----------------------------------
-Implemented Hybrid Systems 
-that performs the linear combination:
+There are Hybrid Systems that performs:
 * Linear Combination based on Zhang <span id="a1">[[1]](#f1)</span>, which is available on additive_hybrid_model method;
-* Nonlinear Combination  based on Santos Jr et al. <span id="a2">[[2]](#f2)</span>, which is available on nolic_model method;
+* Nonlinear Combination based on Santos Jr et al. <span id="a2">[[2]](#f2)</span>, which is available on nolic_model method;
 
 In example_of_usage.py there are examples of usage of the methods. This file do not perform parameter optimization. The functions with parameter optimization will be added in the future.
 
